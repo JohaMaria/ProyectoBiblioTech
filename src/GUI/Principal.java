@@ -171,7 +171,10 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     public void talkDai() {// envia texto a D.A.I
-        String dai = "Hola, mi nombre es D.A.I ";
+        String dai = "Hola, mi nombre es D.A.I"
+                + "\nD= Don't "
+                + "\nA= Artificial"
+                + "\nI= Intelligence";
         txaDialog.append(dai + "\n");
         txaDialog.append(InsertStudents.text);
     }

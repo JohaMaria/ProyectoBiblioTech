@@ -25,6 +25,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -161,7 +162,7 @@ public class Return extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(txtDias, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,10 +285,12 @@ public class Return extends javax.swing.JInternalFrame {
                     List<Loan> loanList = loanFile.arrays();
                     for (int i = 0; i < loanList.size(); i++) {
                         if (loanList.get(i).getAudioVisual().getBrand().equals("np")) {//guarda y cambia
-                            this.dtm.addRow(new Object[]{loanList.get(i).getBooks().getName(), loanList.get(i).getBooks().getCode(),
-                                loanList.get(i).getDateStart(), loanList.get(i).getDateFinal()});
-                            codeBook = loanList.get(i).getBooks().getCode();
-                            count = 0;
+                            if (loanList.get(i).getStudent().getCarnet().equals(carnet)) {
+                                this.dtm.addRow(new Object[]{loanList.get(i).getBooks().getName(), loanList.get(i).getBooks().getCode(),
+                                    loanList.get(i).getDateStart(), loanList.get(i).getDateFinal()});
+                                codeBook = loanList.get(i).getBooks().getCode();
+                                count = 0;
+                            }
                         }
                     }
 
@@ -302,15 +305,20 @@ public class Return extends javax.swing.JInternalFrame {
                     List<Loan> loanList = loanFile.arrays();
                     for (int i = 0; i < loanList.size(); i++) {
                         if (loanList.get(i).getBooks().getName().equals("np")) {
-                            this.dtm.addRow(new Object[]{loanList.get(i).getAudioVisual().getType(),
-                                loanList.get(i).getAudioVisual().getCode(),
-                                loanList.get(i).getDateStart(), loanList.get(i).getDateFinal()});
-                            codeAudio = loanList.get(i).getAudioVisual().getCode();
-                            count = 0;
+                            if (loanList.get(i).getStudent().getCarnet().equals(carnet)) {
+                                this.dtm.addRow(new Object[]{loanList.get(i).getAudioVisual().getType(),
+                                    loanList.get(i).getAudioVisual().getCode(),
+                                    loanList.get(i).getDateStart(), loanList.get(i).getDateFinal()});
+                                codeAudio = loanList.get(i).getAudioVisual().getCode();
+                                count = 0;
+                            }
                         }
                     }
 
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "Error! the Carnet was not found");
+                txtCarnet.setText("");
             }
             tableReturn.setModel(dtm);
         } catch (FileNotFoundException ex) {

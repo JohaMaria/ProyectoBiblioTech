@@ -65,6 +65,7 @@ public class InsertBooks extends javax.swing.JInternalFrame {
             }
         });
 
+        jrbFisico.setBackground(new java.awt.Color(51, 51, 51));
         jrbFisico.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jrbFisico.setForeground(new java.awt.Color(255, 255, 255));
         jrbFisico.setText("Physical:");
@@ -74,6 +75,7 @@ public class InsertBooks extends javax.swing.JInternalFrame {
             }
         });
 
+        jrbDigital.setBackground(new java.awt.Color(51, 51, 51));
         jrbDigital.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jrbDigital.setForeground(new java.awt.Color(255, 255, 255));
         jrbDigital.setText("Digital");
